@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miami Stats</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: monospace;
+            background: #fff;
+            color: #000;
+            overflow-x: hidden;
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+        }
+        
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            color: #666;
+        }
+        
+        .author {
+            font-size: 20px;
+            margin-top: 100px;
+            color: #666;
+        }
+        
+        /* Sticky map container - combined for all maps */
+        .map-section {
+            position: relative;
+            height: 1400vh;
+        }
+        
+        .sticky-map {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 60px;
+        }
+
+        .map-container {
+            position: relative;
+            width: 45%;
+            height: 600px;
+        }
+
+        .text-container {
+            width: 45%;
+            padding: 40px;
+            position: relative;
+            height: 600px;
+            display: flex;
+            align-items: center;
+        }
+
+        .map-label {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            bottom: auto;
+            left: 40px;
+            right: 40px;
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            font-size: 18px;
+            font-weight: normal;
+            font-family: monospace;
+            box-shadow: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            line-height: 1.8;
+            color: #333;
+        }
+        
+        .map-image, .map-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        .map-iframe {
+            border: none;
+        }
+        
+        .map-image.active, .map-iframe.active {
+            opacity: 1;
+        }
+        
+        .map-label.active {
+            opacity: 1;
+        }
+        
+        /* Thank you section */
+        .thank-you {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            background: #f5f5f5;
+        }
+        
+        .thank-you h1 {
+            font-size: 64px;
+            margin-bottom: 30px;
+        }
+        
+        .thank-you p {
+            font-size: 24px;
+            color: #333;
+            max-width: 800px;
+            text-align: center;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Miami and Cars</h1>
+        <p>Scroll to learn about how to make Miami safer and friendlier to all forms of transit</p>
+        <p class="author">Andres Salcedo</p>
+    </div>
+
+    <div class="map-section" id="mapSection">
+        <div class="sticky-map">
+            <div class="map-container">
+                <img src="download.png" class="map-image" data-index="0" alt="Miami Overview">
+                <img src="parks.png" class="map-image" data-index="1" alt="Parks">
+                <img src="buildings.png" class="map-image" data-index="2" alt="Buildings">
+                <img src="roads.png" class="map-image" data-index="3" alt="Roads">
+                <img src="miami_vehicles_simple.png" class="map-image" data-index="4" alt="Cars">
+                <iframe src="miami_commute_map.html" class="map-iframe" data-index="5"></iframe>
+                <iframe src="miami_income_map.html" class="map-iframe" data-index="6"></iframe>
+            </div>
+            
+            <div class="text-container">   
+                <div class="map-label" data-index="0">
+                    Miami's land use tells a story of urban priorities. As we scroll through this analysis, you'll see how the city allocates its finite space across parks, buildings, and transportation infrastructure. The patterns reveal a city shaped by automobile dependency, with significant implications for livability, environmental health, and social equity.
+                </div>
+                <div class="map-label" data-index="1">
+                    Parks and green spaces comprise only 2.62% of Miami's total land area. For a coastal city known for its tropical climate and outdoor lifestyle, this is remarkably low. Residents have limited access to public recreational areas, shade, and natural cooling—amenities that become increasingly critical as temperatures rise due to climate change. This scarcity disproportionately affects lower-income neighborhoods.
+                </div>
+                <div class="map-label" data-index="2">
+                    Buildings occupy 24.8% of Miami's land area, encompassing homes, apartments, offices, and retail spaces. While this represents substantial development, it's noteworthy that built structures take up less space than the infrastructure designed to move between them. The efficiency of urban density is undermined when roads consume more land than the destinations they connect.
+                </div>
+                <div class="map-label" data-index="3">
+                    Roads and highways consume 25.7% of Miami's land—more than buildings themselves. This is the footprint of car dependency: parking lots, multi-lane arterials, highway interchanges, and surface streets. Land that could support housing, parks, or commercial activity instead serves vehicles. This infrastructure prioritizes speed and throughput over pedestrian safety, neighborhood cohesion, and environmental sustainability.
+                </div>
+                <div class="map-label" data-index="4">
+                    In Miami, car-dependency is very common. To forego driving in the city is often not a choice. Households are now often holding as many cars as there are working-people living in them. With over 190,000 households and an average of 2.3 persons per household, that's a lot of cars on the road.
+                </div>
+                <div class="map-label" data-index="5">
+                    This interactive map shows commute patterns across Miami. The data reveals how residents travel to work—highlighting the dominance of driving alone versus public transit, walking, or cycling. Notice the geographic patterns: some neighborhoods have virtually no alternatives to car ownership, while others maintain slightly more diverse transportation options. Click and explore the map to see commute data for different census tracts.
+                </div>
+                <div class="map-label" data-index="6">
+                    Income inequality in Miami is stark and spatially concentrated. This map displays median household income across census tracts, revealing dramatic disparities between wealthy coastal areas and lower-income inland neighborhoods. Transportation costs burden lower-income households disproportionately—when car ownership is mandatory but expensive, families sacrifice other necessities. The lack of transit alternatives perpetuates economic inequality.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="thank-you">
+        <h1>Thank You</h1>
+        <p>Thank you for exploring Miami's urban landscape with me. Understanding these patterns is the first step toward building a more equitable, sustainable, and livable city for all residents. Together, we can advocate for safer streets, better transit, and neighborhoods designed for people, not just cars.</p>
+        <p class="author" style="margin-top: 60px;">— Andres Salcedo</p>
+    </div>
+
+    <script>
+        // Combined maps section (static images + interactive iframes)
+        const mapSection = document.getElementById('mapSection');
+        const allMapElements = document.querySelectorAll('.map-image, .map-iframe');
+        const mapLabels = document.querySelectorAll('.map-label');
+        
+        function updateMapDisplay() {
+            const sectionTop = mapSection.offsetTop;
+            const sectionHeight = mapSection.offsetHeight;
+            const scrollPosition = window.scrollY - sectionTop;
+            const scrollProgress = scrollPosition / sectionHeight;
+            
+            // Calculate which element should be shown (0-6 for 7 total items)
+            const elementIndex = Math.floor(scrollProgress * 7);
+            const clampedIndex = Math.max(0, Math.min(6, elementIndex));
+            
+            // Update all map elements (images and iframes)
+            allMapElements.forEach((element, idx) => {
+                if (idx === clampedIndex) {
+                    element.classList.add('active');
+                } else {
+                    element.classList.remove('active');
+                }
+            });
+            
+            // Update labels
+            mapLabels.forEach((label, idx) => {
+                if (idx === clampedIndex) {
+                    label.classList.add('active');
+                } else {
+                    label.classList.remove('active');
+                }
+            });
+        }
+        
+        // Initial display
+        updateMapDisplay();
+        
+        // Update on scroll
+        window.addEventListener('scroll', updateMapDisplay);
+    </script>
+</body>
+</html>
